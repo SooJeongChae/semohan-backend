@@ -14,8 +14,14 @@ public enum ErrorCode {
     INVALID_FORM_DATA(HttpStatus.BAD_REQUEST,"유효하지 않은 형식의 데이터 입니다."),
     INVALID_REPEATED_PASSWORD(HttpStatus.BAD_REQUEST,"비밀번호를 정확히 입력해주세요."),
 
-    FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+    FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다."),
 
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),
+    INCORRECT_VERIFICATION_CODE(HttpStatus.UNAUTHORIZED, "인증 번호가 일치하지 않습니다."),
+    MISMATCH_PHONENUMBER(HttpStatus.BAD_REQUEST, "입력된 전화번호가 등록된 전화번호와 일치하지 않습니다."),
+    ALREADY_REGISTERED(HttpStatus.BAD_REQUEST, "이미 가입된 전화번호입니다."),
+    ALREADY_USED_ID(HttpStatus.BAD_REQUEST, "이미 사용중인 아이디입니다."),
+    ALREADY_USED_NICKNAME(HttpStatus.BAD_REQUEST, "이미 사용중인 닉네임입니다.");
 
     // 예시, 참고해서 필요한 에러 코드 작성하기
 //    NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 데이터입니다."),
