@@ -34,9 +34,18 @@ public class MemberService {
             throw new CustomException(ErrorCode.INVALID_REPEATED_PASSWORD);
         }
 
+        // 입력한 닉네임이랑 같은 닉네임 있으면 예외
+        if (memberRepository.findMemberByNickname(memberUpdateDto.getNickname()).isPresent()) {
+            throw new CustomException(ErrorCode.ALREADY_USED_NICKNAME);
+        }
         // entity에 변경된 닉네임 set
         member.setNickname(memberUpdateDto.getNickname());
 
+
+        // 입력한 핸드폰 번호랑 같은 핸드폰번호 있으면 예외
+        if (memberRepository.findMemberByPhoneNumber(memberUpdateDto.getPhoneNumber()).isPresent()) {
+            throw new CustomException(ErrorCode.ALREADY_USED_PHONE_NUMBER);
+        }
         // entity에 변경된 핸드폰번호 set
         member.setPhoneNumber(memberUpdateDto.getPhoneNumber());
 

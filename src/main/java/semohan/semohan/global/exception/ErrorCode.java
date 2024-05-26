@@ -18,10 +18,11 @@ public enum ErrorCode {
 
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),
     INCORRECT_VERIFICATION_CODE(HttpStatus.UNAUTHORIZED, "인증 번호가 일치하지 않습니다."),
-    MISMATCH_PHONENUMBER(HttpStatus.BAD_REQUEST, "입력된 전화번호가 등록된 전화번호와 일치하지 않습니다."),
+    MISMATCH_PHONE_NUMBER(HttpStatus.BAD_REQUEST, "입력된 전화번호가 등록된 전화번호와 일치하지 않습니다."),
     ALREADY_REGISTERED(HttpStatus.BAD_REQUEST, "이미 가입된 전화번호입니다."),
     ALREADY_USED_ID(HttpStatus.BAD_REQUEST, "이미 사용중인 아이디입니다."),
-    ALREADY_USED_NICKNAME(HttpStatus.BAD_REQUEST, "이미 사용중인 닉네임입니다.");
+    ALREADY_USED_NICKNAME(HttpStatus.BAD_REQUEST, "이미 사용중인 닉네임입니다."),
+    ALREADY_USED_PHONE_NUMBER(HttpStatus.BAD_REQUEST, "이미 가입된 핸드폰 번호입니다.");
 
     // 예시, 참고해서 필요한 에러 코드 작성하기
 //    NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 데이터입니다."),
