@@ -14,7 +14,9 @@ public enum ErrorCode {
     INVALID_FORM_DATA(HttpStatus.BAD_REQUEST,"유효하지 않은 형식의 데이터 입니다."),
     INVALID_REPEATED_PASSWORD(HttpStatus.BAD_REQUEST,"비밀번호를 정확히 입력해주세요."),
 
-    FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+    FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다."),
+
+    ENCODING_ERROR(HttpStatus.UNPROCESSABLE_ENTITY, "인코딩하는 과정에 오류가 발생했습니다.");
 
 
     // 예시, 참고해서 필요한 에러 코드 작성하기
