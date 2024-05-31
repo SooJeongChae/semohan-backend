@@ -33,6 +33,7 @@ public class Member {
     @NotNull
     private String nickname;
 
+    @Temporal(TemporalType.DATE)    // 시간 정보 없이 날짜만 저장
     private Date birthday;
 
     private int point;
