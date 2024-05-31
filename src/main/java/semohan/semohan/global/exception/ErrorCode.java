@@ -19,6 +19,8 @@ public enum ErrorCode {
     ALREADY_USED_NICKNAME(HttpStatus.BAD_REQUEST, "이미 사용중인 닉네임입니다."),
     ALREADY_USED_PHONE_NUMBER(HttpStatus.BAD_REQUEST, "이미 가입된 핸드폰 번호입니다."),
 
+    INVALID_RESTAURANT(HttpStatus.BAD_REQUEST,"유효하지 않은 식당입니다."),
+
     FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다."),
 
     ENCODING_ERROR(HttpStatus.UNPROCESSABLE_ENTITY, "인코딩하는 과정에 오류가 발생했습니다."),
