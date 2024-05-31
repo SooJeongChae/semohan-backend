@@ -1,11 +1,11 @@
-package semohan.semohan.domain.auth.application;
+package semohan.semohan.domain.member.application;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import semohan.semohan.domain.auth.domain.Member;
-import semohan.semohan.domain.auth.dto.*;
-import semohan.semohan.domain.auth.repository.MemberRepository;
+import semohan.semohan.domain.member.domain.Member;
+import semohan.semohan.domain.member.dto.*;
+import semohan.semohan.domain.member.repository.MemberRepository;
 import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.ErrorCode;
 

@@ -1,10 +1,10 @@
-package semohan.semohan.domain.auth.dto;
+package semohan.semohan.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import semohan.semohan.domain.auth.domain.Member;
+import semohan.semohan.domain.member.domain.Member;
 
 import java.util.Date;
 

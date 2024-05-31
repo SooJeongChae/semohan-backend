@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.application;
+package semohan.semohan.domain.member.application;
 
 import jakarta.annotation.PostConstruct;
 import net.nurigo.sdk.NurigoApp;

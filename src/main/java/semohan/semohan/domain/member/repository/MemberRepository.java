@@ -1,8 +1,8 @@
-package semohan.semohan.domain.auth.repository;
+package semohan.semohan.domain.member.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import semohan.semohan.domain.auth.domain.Member;
+import semohan.semohan.domain.member.domain.Member;
 import java.util.Optional;
 
 @Repository

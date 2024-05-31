@@ -1,10 +1,10 @@
-package semohan.semohan.domain.auth.domain;
+package semohan.semohan.domain.member.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
-import semohan.semohan.domain.auth.dto.SignUpDto;
+import semohan.semohan.domain.member.dto.SignUpDto;
 import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 import java.util.Date;

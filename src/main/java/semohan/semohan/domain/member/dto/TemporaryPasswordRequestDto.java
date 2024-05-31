@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.dto;
+package semohan.semohan.domain.member.dto;
 
 
 import jakarta.validation.constraints.Pattern;
