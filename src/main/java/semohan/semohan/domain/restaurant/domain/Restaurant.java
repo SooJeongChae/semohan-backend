@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.antlr.v4.runtime.misc.NotNull;
+import semohan.semohan.domain.member.domain.Member;
 import semohan.semohan.global.s3.Image;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -35,4 +38,7 @@ public class Restaurant {
     @ManyToOne
     @JoinColumn(name="image")
     private Image image;
+
+    @ManyToMany(mappedBy = "scrap", fetch = FetchType.LAZY)
+    private List<Member> members;
 }
