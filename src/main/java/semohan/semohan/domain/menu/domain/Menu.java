@@ -3,7 +3,6 @@ package semohan.semohan.domain.menu.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 import java.util.Date;
@@ -20,7 +19,7 @@ public class Menu {
     private long id;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)    // 시간 정보 없이 날짜만 저장
     private Date mealDate;
 
     @NotNull
