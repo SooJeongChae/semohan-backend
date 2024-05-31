@@ -38,6 +38,11 @@ public class Member {
     private int point;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "member_restaurant_scrap",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "restaurant_id")
+    )
     private List<Restaurant> scrap;
 
     @OneToOne(fetch = FetchType.LAZY) /*FetchType.LAZY: 해당 엔티티가 필요할 때까지 로딩 지연시키는 옵션*/
