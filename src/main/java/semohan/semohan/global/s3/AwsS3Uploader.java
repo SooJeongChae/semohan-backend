@@ -16,7 +16,6 @@ import semohan.semohan.global.exception.ErrorCode;
 import java.io.IOException;
 import java.util.UUID;
 
-// TODO: Exception 수정
 
 @Slf4j
 @RequiredArgsConstructor

@@ -3,7 +3,7 @@ package semohan.semohan.domain.menu.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
-import semohan.semohan.domain.resaurant.domain.Restaurant;
+import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 import java.util.Date;
 

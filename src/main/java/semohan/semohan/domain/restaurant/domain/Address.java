@@ -1,4 +1,4 @@
-package semohan.semohan.domain.resaurant.domain;
+package semohan.semohan.domain.restaurant.domain;
 
 import jakarta.persistence.Embeddable;
 import lombok.Builder;
