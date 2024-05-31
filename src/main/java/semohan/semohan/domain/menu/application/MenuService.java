@@ -7,6 +7,7 @@ import semohan.semohan.domain.member.domain.Member;
 import semohan.semohan.domain.member.repository.MemberRepository;
 import semohan.semohan.domain.menu.dto.MenuViewDto;
 import semohan.semohan.domain.menu.repository.MenuRepository;
+import semohan.semohan.domain.restaurant.repository.RestaurantRepository;
 import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.ErrorCode;
 
@@ -19,10 +20,15 @@ import java.time.format.DateTimeFormatter;
 public class MenuService {
     private final MenuRepository menuRepository;
     private final MemberRepository memberRepository;
+    private final RestaurantRepository restaurantRepository;
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public MenuViewDto getTodayMenuByRestaurant(long restaurantId) {
+        if (!restaurantRepository.existsById(restaurantId)) {
+            throw new CustomException(ErrorCode.INVALID_RESTAURANT);
+        }   // id에 해당하는 식당 없을 때 예외 발생
+
         LocalDate today = LocalDate.now();
         String todayDate = today.format(DATE_FORMATTER);
         return menuRepository.findMenuByRestaurantIdAndMealDate(restaurantId, todayDate)
@@ -31,6 +37,10 @@ public class MenuService {
     }
 
     public MenuViewDto getMenuByRestaurantAndDate(long restaurantId, LocalDate mealDate) {
+        if (!restaurantRepository.existsById(restaurantId)) {
+            throw new CustomException(ErrorCode.INVALID_RESTAURANT);
+        }   // id에 해당하는 식당 없을 때 예외 발생
+
         String mealDateFormatted = mealDate.format(DATE_FORMATTER);
         return menuRepository.findMenuByRestaurantIdAndMealDate(restaurantId, mealDateFormatted)
                 .map(MenuViewDto::toDto)
@@ -42,6 +52,7 @@ public class MenuService {
         if (member.getPin() == null) {
             throw new CustomException(ErrorCode.PINNED_RESTAURANT_NOT_FOUND);
         }   // pin한 레스토랑 없으면 예외 발생
+
         LocalDate today = LocalDate.now();
         String todayDate = today.format(DATE_FORMATTER);
         return menuRepository.findMenuByRestaurantIdAndMealDate(member.getPin().getId(), todayDate)
