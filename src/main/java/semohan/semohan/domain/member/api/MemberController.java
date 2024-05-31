@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.api;
+package semohan.semohan.domain.member.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import semohan.semohan.domain.auth.application.MemberService;
-import semohan.semohan.domain.auth.dto.MemberUpdateDto;
-import semohan.semohan.domain.auth.dto.MemberViewDto;
+import semohan.semohan.domain.member.application.MemberService;
+import semohan.semohan.domain.member.dto.MemberUpdateDto;
+import semohan.semohan.domain.member.dto.MemberViewDto;
 import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.*;
 

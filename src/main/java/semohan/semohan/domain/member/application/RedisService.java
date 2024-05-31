@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.application;
+package semohan.semohan.domain.member.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.dto;
+package semohan.semohan.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

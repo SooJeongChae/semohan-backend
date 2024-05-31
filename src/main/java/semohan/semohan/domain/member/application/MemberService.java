@@ -1,13 +1,13 @@
-package semohan.semohan.domain.auth.application;
+package semohan.semohan.domain.member.application;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import semohan.semohan.domain.auth.domain.Member;
-import semohan.semohan.domain.auth.dto.MemberUpdateDto;
-import semohan.semohan.domain.auth.dto.MemberViewDto;
-import semohan.semohan.domain.auth.repository.MemberRepository;
+import semohan.semohan.domain.member.domain.Member;
+import semohan.semohan.domain.member.dto.MemberUpdateDto;
+import semohan.semohan.domain.member.dto.MemberViewDto;
+import semohan.semohan.domain.member.repository.MemberRepository;
 import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.ErrorCode;
 
@@ -21,6 +21,7 @@ public class MemberService {
         return MemberViewDto.toDto(memberRepository.findMemberById(id).orElseThrow());
     }
 
+    // 공백이 들어갔을 때 null 값으로 바뀌어버림..
     @Transactional
     public boolean updateMemberInfo(Long id, MemberUpdateDto memberUpdateDto) {
 

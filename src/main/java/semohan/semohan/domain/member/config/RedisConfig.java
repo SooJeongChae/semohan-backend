@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.config;
+package semohan.semohan.domain.member.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

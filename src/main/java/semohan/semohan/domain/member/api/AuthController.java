@@ -1,4 +1,4 @@
-package semohan.semohan.domain.auth.api;
+package semohan.semohan.domain.member.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import semohan.semohan.domain.auth.application.AuthService;
-import semohan.semohan.domain.auth.dto.*;
+import semohan.semohan.domain.member.application.AuthService;
+import semohan.semohan.domain.member.dto.*;
 
 @Slf4j
 @RestController
