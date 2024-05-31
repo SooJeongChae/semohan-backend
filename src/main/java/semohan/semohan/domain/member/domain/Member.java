@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 import semohan.semohan.domain.member.dto.SignUpDto;
-import semohan.semohan.domain.resaurant.domain.Restaurant;
+import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 import java.util.Date;
 import java.util.List;
