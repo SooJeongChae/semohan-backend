@@ -19,11 +19,16 @@ public enum ErrorCode {
     ALREADY_USED_NICKNAME(HttpStatus.BAD_REQUEST, "이미 사용중인 닉네임입니다."),
     ALREADY_USED_PHONE_NUMBER(HttpStatus.BAD_REQUEST, "이미 가입된 핸드폰 번호입니다."),
 
+    INVALID_RESTAURANT(HttpStatus.BAD_REQUEST,"유효하지 않은 식당입니다."),
+
     FILE_UPLOAD_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다."),
 
     ENCODING_ERROR(HttpStatus.UNPROCESSABLE_ENTITY, "인코딩하는 과정에 오류가 발생했습니다."),
 
-    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다.");
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),
+
+    MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "아직 메뉴가 등록되지 않았습니다."),
+    PINNED_RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "당신의 식당을 PIN해주세요.");
 
     private final HttpStatus httpStatus;
     private final String message;
