@@ -1,4 +1,4 @@
-package semohan.semohan.domain.resaurant.api;
+package semohan.semohan.domain.restaurant.api;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ public class LocationController {
     public ResponseEntity<Boolean> updateLocation(@PathVariable String region, HttpServletResponse response)  {
         Cookie cookie = null;
         try {
-            cookie = new Cookie("location", URLEncoder.encode(region,"UTF-8"));
+            cookie = new Cookie("region", URLEncoder.encode(region,"UTF-8"));
         } catch (UnsupportedEncodingException e) {
             throw new CustomException(ErrorCode.ENCODING_ERROR);
         }
