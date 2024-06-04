@@ -25,7 +25,10 @@ public enum ErrorCode {
 
     ENCODING_ERROR(HttpStatus.UNPROCESSABLE_ENTITY, "인코딩하는 과정에 오류가 발생했습니다."),
 
-    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다.");
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),
+
+    MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "아직 메뉴가 등록되지 않았습니다."),
+    PINNED_RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "당신의 식당을 PIN해주세요.");
 
     private final HttpStatus httpStatus;
     private final String message;

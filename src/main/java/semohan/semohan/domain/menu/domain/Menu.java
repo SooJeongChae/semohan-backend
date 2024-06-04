@@ -19,6 +19,7 @@ public class Menu {
     private long id;
 
     @NotNull
+    @Temporal(TemporalType.DATE)    // 시간 정보 없이 날짜만 저장
     private Date mealDate;
 
     @NotNull
@@ -28,7 +29,7 @@ public class Menu {
     private String subMenu; // '|'로 구분된 문자열
 
     @NotNull
-    private int mealType;
+    private int mealType;   // 0, 1, 2로 구분. 0: 올데이, 1: 점심, 2: 저녁
 
     @NotNull
     @ManyToOne
