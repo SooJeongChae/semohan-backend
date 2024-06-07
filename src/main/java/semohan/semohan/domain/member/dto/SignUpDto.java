@@ -1,16 +1,14 @@
 package semohan.semohan.domain.member.dto;
 
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
 
 @Builder
 @Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignUpDto {
