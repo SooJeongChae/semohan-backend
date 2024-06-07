@@ -109,11 +109,6 @@ public class AuthService {
         if (member == null) {
             throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
         }
-
-        // 입력한 아이디로 조회한 회원과 입력한 핸드폰번호로 조회한 회원이 같지 않을 때 예외
-        if (!member.equals(memberRepository.findMemberByPhoneNumber(request.getPhoneNumber()).orElseThrow())) {
-            throw new CustomException(ErrorCode.MISMATCH_PHONE_NUMBER);
-        }
         
         //수신번호 형태에 맞춰 "-"을 ""로 변환
         String phoneNumberWithoutDashes = request.getPhoneNumber().replaceAll("-","");
