@@ -56,17 +56,17 @@ public class AuthService {
             memberRepository.save(member);
             return true;  // 성공적으로 저장되면 true 반환
         } else {
-            throw new CustomException(INVALID_REPEATED_PASSWORD);
+            throw new CustomException(ErrorCode.INVALID_REPEATED_PASSWORD);
         }
     }
 
     public long signIn(SignInDto signInDto) {
         // username으로 member 가져오기
-        Member member = memberRepository.findMemberByUsername(signInDto.getUsername()).orElseThrow();
+        Member member = memberRepository.findMemberByUsername(signInDto.getUsername()).orElseThrow(() -> new CustomException(INVALID_MEMBER));
 
         // 비밀번호 확인
         if(!signInDto.getPassword().equals(member.getPassword())) {
-            throw new CustomException(INVALID_MEMBER);
+            throw new CustomException(ErrorCode.INVALID_MEMBER);
         }
         return member.getId();
     }
@@ -93,13 +93,13 @@ public class AuthService {
 
             // 일치 유저 없으면 예외
             if (member == null) {
-                throw new CustomException(MEMBER_NOT_FOUND);
+                throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
             } else {
                 redisService.deleteData(request.getPhoneNumber());
                 return member.getUsername(); // 인증 코드 일치, 유저 있으면 redis 삭제 후 아이디 반환
             }
         } else {
-            throw new CustomException(INCORRECT_VERIFICATION_CODE);
+            throw new CustomException(ErrorCode.INCORRECT_VERIFICATION_CODE);
         }
     }
 
@@ -107,7 +107,7 @@ public class AuthService {
         // 아이디로 사용자 조회
         Member member = memberRepository.findMemberByUsername(request.getUsername()).orElse(null);
         if (member == null) {
-            throw new CustomException(MEMBER_NOT_FOUND);
+            throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
         }
         
         //수신번호 형태에 맞춰 "-"을 ""로 변환
@@ -129,7 +129,7 @@ public class AuthService {
             // 아이디로 사용자 조회
             Member member = memberRepository.findMemberByUsername(request.getUsername()).orElse(null);
             if (member == null) {
-                throw new CustomException(MEMBER_NOT_FOUND);
+                throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
             }
             
             // 입력한 아이디로 찾은 member의 휴대전화 번호와 입력한 휴대전화 번호가 일치하는지 확인
@@ -144,10 +144,10 @@ public class AuthService {
                 redisService.deleteData(request.getPhoneNumber());  // redis 저장 데이터 삭제
                 return true; // 임시 비밀번호 문자 전송 성공
             } else {
-                throw new CustomException(MISMATCH_PHONE_NUMBER);    // 저장된 폰번호와 입력된 폰번호 불일치
+                throw new CustomException(ErrorCode.MISMATCH_PHONE_NUMBER);    // 저장된 폰번호와 입력된 폰번호 불일치
             }
         } else {
-            throw new CustomException(INCORRECT_VERIFICATION_CODE);
+            throw new CustomException(ErrorCode.INCORRECT_VERIFICATION_CODE);
         }
     }
 }

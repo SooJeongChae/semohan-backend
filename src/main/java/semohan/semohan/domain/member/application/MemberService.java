@@ -21,7 +21,6 @@ public class MemberService {
         return MemberViewDto.toDto(memberRepository.findMemberById(id).orElseThrow());
     }
 
-    // 공백이 들어갔을 때 null 값으로 바뀌어버림..
     @Transactional
     public boolean updateMemberInfo(Long id, MemberUpdateDto memberUpdateDto) {
 
@@ -37,15 +36,18 @@ public class MemberService {
 
         // 입력한 닉네임이랑 같은 닉네임 있으면 예외
         if (memberRepository.findMemberByNickname(memberUpdateDto.getNickname()).isPresent()) {
-            throw new CustomException(ErrorCode.ALREADY_USED_NICKNAME);
+            if (!member.equals(memberRepository.findMemberByNickname(memberUpdateDto.getNickname()).orElseThrow())) {
+                throw new CustomException(ErrorCode.ALREADY_USED_NICKNAME); // 본인이 사용하는 닉네임 아닐 때만 예외 발생
+            }
         }
         // entity에 변경된 닉네임 set
         member.setNickname(memberUpdateDto.getNickname());
 
-
         // 입력한 핸드폰 번호랑 같은 핸드폰번호 있으면 예외
         if (memberRepository.findMemberByPhoneNumber(memberUpdateDto.getPhoneNumber()).isPresent()) {
-            throw new CustomException(ErrorCode.ALREADY_USED_PHONE_NUMBER);
+            if (!member.equals(memberRepository.findMemberByPhoneNumber(memberUpdateDto.getPhoneNumber()).orElseThrow())) {
+                throw new CustomException(ErrorCode.ALREADY_USED_PHONE_NUMBER);
+            }
         }
         // entity에 변경된 핸드폰번호 set
         member.setPhoneNumber(memberUpdateDto.getPhoneNumber());

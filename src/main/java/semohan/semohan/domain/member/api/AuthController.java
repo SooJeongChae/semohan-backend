@@ -2,7 +2,6 @@ package semohan.semohan.domain.member.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import semohan.semohan.domain.member.application.AuthService;
 import semohan.semohan.domain.member.dto.*;
 
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +20,9 @@ import semohan.semohan.domain.member.dto.*;
 public class AuthController {
     private final AuthService authService;
 
-    @Validated
     @PostMapping(value = "/sign-up/send")
-    public ResponseEntity<Boolean> sendSmsForSignUp(@RequestParam("phoneNumber") @Pattern(regexp= "\\d{3}-\\d{4}-\\d{4}") String phoneNumber) {
+    public ResponseEntity<Boolean> sendSmsForSignUp(@RequestBody Map<String, String> phoneNumberMap) {
+        String phoneNumber = phoneNumberMap.get("phoneNumber");
         return ResponseEntity.ok(authService.sendVerifySms(phoneNumber));
     }
 
@@ -39,6 +40,9 @@ public class AuthController {
     public ResponseEntity<Boolean> signUp(@RequestBody @Validated SignUpDto signUpDto, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         Boolean isVerified = (Boolean) session.getAttribute("isVerified");
+
+        log.info(signUpDto.toString());
+
         // 세션에서 인증 상태 확인
         if (Boolean.TRUE.equals(isVerified)) {
             // service 클래스 반환값 true일 때
@@ -63,9 +67,9 @@ public class AuthController {
         return ResponseEntity.ok(true);
     }
 
-    @Validated
     @PostMapping(value = "/find-id/send")
-    public ResponseEntity<Boolean> sendSmsForFindId(@RequestParam("phoneNumber") @Pattern(regexp= "\\d{3}-\\d{4}-\\d{4}") String phoneNumber) {
+    public ResponseEntity<Boolean> sendSmsForFindId(@RequestBody Map<String, String> phoneNumberMap) {
+        String phoneNumber = phoneNumberMap.get("phoneNumber");
         return ResponseEntity.ok(authService.sendVerifySms(phoneNumber));
     }
 
