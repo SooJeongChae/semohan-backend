@@ -15,7 +15,7 @@ import java.util.Date;
 public class MemberViewDto {
     private String name;
 
-    private String userName;
+    private String username;
 
     private String nickname;
 

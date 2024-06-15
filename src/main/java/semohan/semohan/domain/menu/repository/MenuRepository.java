@@ -22,4 +22,9 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 
     @Query(value = "SELECT * FROM menu WHERE restaurant_id = :restaurantId AND TO_CHAR(meal_date, 'YYYY-MM-DD') = :mealDate", nativeQuery = true)
     Optional<Menu> findMenuByRestaurantIdAndMealDate(@Param("restaurantId") Long restaurantId, @Param("mealDate") String mealDate);
+
+    @Query("SELECT m.mainMenu, COUNT(m.mainMenu) as count FROM Menu m WHERE TO_CHAR(m.mealDate, 'YYYY-MM-DD') = :mealDate GROUP BY m.mainMenu ORDER BY count DESC")
+    List<Object[]> findMenusByMealDate(@Param("mealDate") String mealDate);
+
+    Optional<Menu> findMenuById(Long id);
 }
