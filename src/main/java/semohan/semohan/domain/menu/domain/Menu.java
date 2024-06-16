@@ -32,6 +32,9 @@ public class Menu {
     private int mealType;   // 0, 1, 2로 구분. 0: 올데이, 1: 점심, 2: 저녁
 
     @NotNull
+    private int likesMenu = 0;  // 좋아요 수
+
+    @NotNull
     @ManyToOne
     private Restaurant restaurant;
 }

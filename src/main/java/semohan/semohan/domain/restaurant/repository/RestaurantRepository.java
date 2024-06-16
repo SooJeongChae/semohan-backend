@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     // 메뉴 부분 다시 고민해봐야 함...
@@ -13,4 +14,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     List<Restaurant> findAllByNameContaining(String name);
 
     List<Restaurant> findByAddress_AddressContaining(String location);
+    Optional<Restaurant> findRestaurantById(Long id);
 }

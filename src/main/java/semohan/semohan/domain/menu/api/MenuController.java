@@ -9,6 +9,7 @@ import semohan.semohan.domain.menu.application.MenuService;
 import semohan.semohan.domain.menu.dto.MenuViewDto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,5 +34,10 @@ public class MenuController {
     public ResponseEntity<MenuViewDto> getPinnedRestaurantMenu(HttpServletRequest request) {
         long memberId = (Long) request.getSession().getAttribute("id");
         return ResponseEntity.ok(menuService.getPinnedRestaurantMenu(memberId));
+    }
+
+    @GetMapping("/hot-menu")
+    public ResponseEntity<List<String>> getTop3Menus() {
+        return ResponseEntity.ok(menuService.getTop3Menus());
     }
 }

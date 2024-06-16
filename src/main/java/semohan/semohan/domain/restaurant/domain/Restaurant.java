@@ -41,4 +41,7 @@ public class Restaurant {
 
     @ManyToMany(mappedBy = "scrap", fetch = FetchType.LAZY)
     private List<Member> members;
+
+    @NotNull
+    private int likesRestaurant = 0;  // 좋아요 수
 }

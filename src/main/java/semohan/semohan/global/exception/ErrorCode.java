@@ -28,7 +28,10 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."),
 
     MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "아직 메뉴가 등록되지 않았습니다."),
-    PINNED_RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "당신의 식당을 PIN해주세요.");
+    PINNED_RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "당신의 식당을 PIN해주세요."),
+
+    ALREADY_WRITE_REVIEW(HttpStatus.BAD_REQUEST, "이미 해당 메뉴에 리뷰를 작성했습니다."),
+    INVALID_MENU_DATE(HttpStatus.BAD_REQUEST,"리뷰는 당일 메뉴에만 작성할 수 있습니다.");
 
     private final HttpStatus httpStatus;
     private final String message;

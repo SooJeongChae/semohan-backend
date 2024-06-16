@@ -116,8 +116,4 @@ public class RestaurantService {
         member.getScrap().remove(restaurant);
         return true;
     }
-
-
-
-
 }
