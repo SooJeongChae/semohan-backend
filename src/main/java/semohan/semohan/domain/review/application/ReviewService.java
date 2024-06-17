@@ -18,7 +18,7 @@ import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.ErrorCode;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +37,7 @@ public class ReviewService {
     }
 
     public List<ReviewViewDto> getMyReviews(long id) {
-        List<Review> reviews = reviewRepository.findReviewsById(id);
+        List<Review> reviews = reviewRepository.findReviewsByMemberId(id);
         return reviews.stream().map(ReviewViewDto::toDto).collect(Collectors.toList());
     }
 
@@ -48,20 +48,21 @@ public class ReviewService {
     }
 
     @Transactional
-    public boolean createReview(ReviewCreationDto reviewCreationDto, long restaurantId, long menuId, long memberId) {
+    public boolean createReview(ReviewCreationDto reviewCreationDto, long restaurantId, long memberId) {
+
+        int mealType = reviewCreationDto.getMealType();
+        LocalDate today = LocalDate.now();
+        String mealDate = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        // 오늘 날짜와 mealType, restaurantId를 이용해 메뉴 조회
+        Menu menu = menuRepository.findMenuByRestaurantIdAndMealDateAndMealType(restaurantId, mealDate, mealType)
+                .orElseThrow(() -> new CustomException(ErrorCode.MENU_NOT_FOUND));
+
+        long menuId = menu.getId();
 
         // 리뷰 중복 여부 확인
         if (reviewRepository.existsByMemberIdAndMenuId(memberId, menuId)) {
             throw new CustomException(ErrorCode.ALREADY_WRITE_REVIEW);
-        }
-
-        Menu menu = menuRepository.findMenuById(menuId).orElseThrow(() -> new CustomException(ErrorCode.MENU_NOT_FOUND));
-
-        // 당일 메뉴 여부 체크
-        LocalDate today = LocalDate.now();
-        LocalDate mealDate = menu.getMealDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        if (!mealDate.isEqual(today)) {
-            throw new CustomException(ErrorCode.INVALID_MENU_DATE);
         }
 
         Review review = new Review();
@@ -99,7 +100,6 @@ public class ReviewService {
         memberRepository.save(member); // 변경된 포인트 저장
 
         return true; // 성공적으로 저장된 경우
-        // 저장 실패 경우 구현해야함
     }
 
     @Transactional

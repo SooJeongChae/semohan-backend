@@ -34,14 +34,14 @@ public class ReviewController {
         return ResponseEntity.ok(reviewService.getReviewsByMemberId(memberId));
     }
 
-    @PostMapping("/{restaurantId}/{menuId}/write")
-    public ResponseEntity<Boolean> createReview(@RequestBody ReviewCreationDto reviewCreationDto, @PathVariable("restaurantId") long restaurantId, @PathVariable("menuId") long menuId, HttpServletRequest request) {
+    @PostMapping("/{restaurantId}/write")
+    public ResponseEntity<Boolean> createReview(@RequestBody ReviewCreationDto reviewCreationDto, @PathVariable("restaurantId") long restaurantId, HttpServletRequest request) {
         long memberId = (Long) request.getSession().getAttribute("id");
-        return ResponseEntity.ok(reviewService.createReview(reviewCreationDto, restaurantId, menuId, memberId));
+        return ResponseEntity.ok(reviewService.createReview(reviewCreationDto, restaurantId, memberId));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteReview(@PathVariable long id, HttpServletRequest request) {
+    public ResponseEntity<Boolean> deleteReview(@PathVariable("id") long id, HttpServletRequest request) {
         long memberId = (Long) request.getSession().getAttribute("id");
         return ResponseEntity.ok(reviewService.deleteReview(id, memberId));
     }
