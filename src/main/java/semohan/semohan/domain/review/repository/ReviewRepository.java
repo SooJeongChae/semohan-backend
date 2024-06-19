@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findReviewsByRestaurantId(Long restaurantId);
     List<Review> findReviewsByMemberId(Long memberId);
-    List<Review> findReviewsById(Long id);
     Optional<Review> findReviewById(Long id);
     boolean existsByMemberIdAndMenuId(Long memberId, Long menuId);
 }

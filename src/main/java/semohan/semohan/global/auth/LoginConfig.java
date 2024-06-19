@@ -17,8 +17,8 @@ public class LoginConfig implements WebMvcConfigurer {
                         "/menu/pin",
                         "/review/my-reviews",
                         "/review/member/{memberId}",
-                        "review/{restaurantId}/{menuId}/write",
-                        "review/{id}"
+                        "/review/{restaurantId}/write",
+                        "/review/{id}"
                         // 추가적인 로그인 필요한 패턴들
                 );
     }
