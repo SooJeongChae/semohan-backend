@@ -18,11 +18,14 @@ public class MenuViewDto {
 
     private List<String> subMenu;
 
+    private int likesMenu;
+
     // mainMenu와 subMenu를 리스트로 반환
     public static MenuViewDto toDto(Menu entity) {
         return MenuViewDto.builder()
                 .mainMenu(Arrays.asList(entity.getMainMenu().split("\\|")))
                 .subMenu(Arrays.asList(entity.getSubMenu().split("\\|")))
+                .likesMenu(entity.getLikesMenu())
                 .build();
     }
 }

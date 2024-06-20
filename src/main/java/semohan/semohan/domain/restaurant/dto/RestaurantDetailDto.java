@@ -9,8 +9,6 @@ import semohan.semohan.domain.restaurant.domain.Restaurant;
 public class RestaurantDetailDto {
     private long id;
 
-    // 메뉴 Dto 추가 필요
-
     private String name;
 
     private String phoneNumber;
@@ -23,7 +21,9 @@ public class RestaurantDetailDto {
 
     private String s3Url;
 
+    private int likesRestaurant;
+
     static public RestaurantDetailDto toDto(Restaurant entity) {
-        return new RestaurantDetailDto(entity.getId(), entity.getName(), entity.getPhoneNumber(), entity.getBusinessHours(), entity.getPrice(), entity.getAddress().getFullAddress(), entity.getImage().getS3Url());
-    };
+        return new RestaurantDetailDto(entity.getId(), entity.getName(), entity.getPhoneNumber(), entity.getBusinessHours(), entity.getPrice(), entity.getAddress().getFullAddress(), entity.getImage().getS3Url(), entity.getLikesRestaurant());
+    }
 }

@@ -34,7 +34,7 @@ public class ReviewController {
         return ResponseEntity.ok(reviewService.getReviewsByMemberId(memberId));
     }
 
-    @PostMapping("/{restaurantId}/write")
+    @PostMapping("/write/{restaurantId}")
     public ResponseEntity<Boolean> createReview(@RequestBody ReviewCreationDto reviewCreationDto, @PathVariable("restaurantId") long restaurantId, HttpServletRequest request) {
         long memberId = (Long) request.getSession().getAttribute("id");
         return ResponseEntity.ok(reviewService.createReview(reviewCreationDto, restaurantId, memberId));
