@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import semohan.semohan.domain.menu.application.MenuService;
 import semohan.semohan.domain.menu.dto.MenuViewDto;
+import semohan.semohan.domain.menu.dto.PinViewDto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MenuController {
     }
 
     @GetMapping(value = "/pin")
-    public ResponseEntity<MenuViewDto> getPinnedRestaurantMenu(HttpServletRequest request) {
+    public ResponseEntity<PinViewDto> getPinnedRestaurantMenu(HttpServletRequest request) {
         long memberId = (Long) request.getSession().getAttribute("id");
         return ResponseEntity.ok(menuService.getPinnedRestaurantMenu(memberId));
     }
