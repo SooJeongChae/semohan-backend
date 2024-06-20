@@ -23,7 +23,7 @@ public class LocationController {
     
     // TODO: exception 처리
     @GetMapping("/set/{region}")
-    public ResponseEntity<Boolean> updateLocation(@PathVariable String region, HttpServletResponse response)  {
+    public ResponseEntity<Boolean> updateLocation(@PathVariable("region") String region, HttpServletResponse response)  {
         Cookie cookie = null;
         try {
             cookie = new Cookie("region", URLEncoder.encode(region,"UTF-8"));
