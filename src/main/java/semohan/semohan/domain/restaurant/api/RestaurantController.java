@@ -43,7 +43,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<RestaurantDetailDto> getRestaurantDetail(@PathVariable long id) {
+    public ResponseEntity<RestaurantDetailDto> getRestaurantDetail(@PathVariable("id") long id) {
         return ResponseEntity.ok(restaurantService.getRestaurant(id));
     }
 
@@ -60,15 +60,14 @@ public class RestaurantController {
     }
 
     @PostMapping("/scrap/{restaurantId}")
-    public ResponseEntity<Boolean> scrapRestaurant(HttpServletRequest httpServletRequest, @PathVariable long restaurantId) {
+    public ResponseEntity<Boolean> scrapRestaurant(HttpServletRequest httpServletRequest, @PathVariable("restaurantId") long restaurantId) {
         long memberId = (long) httpServletRequest.getSession().getAttribute("id");
         return ResponseEntity.ok(restaurantService.scrapRestaurant(memberId, restaurantId));
     }
 
     @PostMapping("/delete-scrap/{restaurantId}")
-    public ResponseEntity<Boolean> deleteScrapRestaurant(HttpServletRequest httpServletRequest, @PathVariable long restaurantId) {
+    public ResponseEntity<Boolean> deleteScrapRestaurant(HttpServletRequest httpServletRequest, @PathVariable("restaurantId") long restaurantId) {
         long memberId = (long) httpServletRequest.getSession().getAttribute("id");
         return ResponseEntity.ok(restaurantService.deleteScrapRestaurant(memberId, restaurantId));
     }
-
 }
