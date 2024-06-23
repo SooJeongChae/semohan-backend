@@ -2,6 +2,7 @@ package semohan.semohan.domain.restaurant.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import semohan.semohan.domain.restaurant.application.RestaurantService;
@@ -13,6 +14,7 @@ import semohan.semohan.domain.restaurant.dto.RestaurnatDto;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/restaurant")
@@ -21,7 +23,8 @@ public class RestaurantController {
 
     // 근처에 있는 식당
     @GetMapping("/nearby")
-    public ResponseEntity<List<RestaurnatDto>> getRestaurantsByLocationInfo(@CookieValue(value = "myCookie", defaultValue = "성북구") String region) {
+    public ResponseEntity<List<RestaurnatDto>> getRestaurantsByLocationInfo(@CookieValue(value = "region", defaultValue = "성북구") String region) {
+        log.info("Region from cookie: " + region);
         return ResponseEntity.ok(restaurantService.searchRestaurants("location", region));
     }
 

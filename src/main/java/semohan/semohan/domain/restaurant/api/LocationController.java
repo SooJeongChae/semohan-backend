@@ -24,13 +24,14 @@ public class LocationController {
     // TODO: exception 처리
     @GetMapping("/set/{region}")
     public ResponseEntity<Boolean> updateLocation(@PathVariable("region") String region, HttpServletResponse response)  {
-        Cookie cookie = null;
+        Cookie cookie;
         try {
             cookie = new Cookie("region", URLEncoder.encode(region,"UTF-8"));
+            cookie.setPath("/"); // 쿠키의 유효 경로 설정
+            response.addCookie(cookie);
         } catch (UnsupportedEncodingException e) {
             throw new CustomException(ErrorCode.ENCODING_ERROR);
         }
-        response.addCookie(cookie);
 
         log.info(region);
 
