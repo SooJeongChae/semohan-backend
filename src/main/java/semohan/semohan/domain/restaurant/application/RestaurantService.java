@@ -105,7 +105,12 @@ public class RestaurantService {
     @Transactional
     public boolean scrapRestaurant(long memberId, long restaurantId) {
         Member member = memberRepository.findMemberById(memberId).orElseThrow(() -> new CustomException(ErrorCode.INVALID_MEMBER));
-        member.getScrap().add(restaurantRepository.getReferenceById(restaurantId));
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new CustomException(ErrorCode.INVALID_RESTAURANT));
+        // 중복 체크
+        if (member.getScrap().contains(restaurant)) {
+            throw new CustomException(ErrorCode.ALREADY_SCRAPPED);  // 이미 스크랩한 경우 예외 처리
+        }
+        member.getScrap().add(restaurant);
         return true;
     }
 
