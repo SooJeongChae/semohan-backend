@@ -30,7 +30,9 @@ public enum ErrorCode {
     MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "아직 메뉴가 등록되지 않았습니다."),
     PINNED_RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "당신의 식당을 PIN해주세요."),
 
-    ALREADY_WRITE_REVIEW(HttpStatus.BAD_REQUEST, "이미 해당 메뉴에 리뷰를 작성했습니다.");
+    ALREADY_WRITE_REVIEW(HttpStatus.BAD_REQUEST, "이미 해당 메뉴에 리뷰를 작성했습니다."),
+
+    ALREADY_SCRAPPED(HttpStatus.BAD_REQUEST, "이미 스크랩된 식당입니다.");
 
     private final HttpStatus httpStatus;
     private final String message;
