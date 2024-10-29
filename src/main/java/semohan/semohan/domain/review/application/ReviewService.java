@@ -19,6 +19,7 @@ import semohan.semohan.global.exception.ErrorCode;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,18 +34,27 @@ public class ReviewService {
 
     public List<ReviewViewDto> getReviewsByRestaurantId(long restaurantId) {
         List<Review> reviews = reviewRepository.findReviewsByRestaurantId(restaurantId);
-        return reviews.stream().map(ReviewViewDto::toDto).collect(Collectors.toList());
+        return reviews.stream()
+                .sorted(Comparator.comparing(Review::getWriteTime).reversed())
+                .map(ReviewViewDto::toDto)
+                .collect(Collectors.toList());
     }
 
     public List<ReviewViewDto> getMyReviews(long id) {
         List<Review> reviews = reviewRepository.findReviewsByMemberId(id);
-        return reviews.stream().map(ReviewViewDto::toDto).collect(Collectors.toList());
+        return reviews.stream()
+                .sorted(Comparator.comparing(Review::getWriteTime).reversed())
+                .map(ReviewViewDto::toDto)
+                .collect(Collectors.toList());
     }
 
     public List<ReviewViewDto> getReviewsByMemberId(String memberId) {
         Member member = memberRepository.findMemberByUsername(memberId).orElseThrow();
         List<Review> reviews = reviewRepository.findReviewsByMemberId(member.getId());
-        return reviews.stream().map(ReviewViewDto::toDto).collect(Collectors.toList());
+        return reviews.stream()
+                .sorted(Comparator.comparing(Review::getWriteTime).reversed())
+                .map(ReviewViewDto::toDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional
