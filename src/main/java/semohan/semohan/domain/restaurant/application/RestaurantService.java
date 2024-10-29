@@ -12,7 +12,7 @@ import semohan.semohan.domain.restaurant.domain.Restaurant;
 import semohan.semohan.domain.restaurant.dto.PinnedScrappedRequestDto;
 import semohan.semohan.domain.restaurant.dto.PinnedScrappedResponseDto;
 import semohan.semohan.domain.restaurant.dto.RestaurantDetailDto;
-import semohan.semohan.domain.restaurant.dto.RestaurnatDto;
+import semohan.semohan.domain.restaurant.dto.RestaurantDto;
 import semohan.semohan.domain.restaurant.repository.RestaurantRepository;
 import semohan.semohan.global.exception.CustomException;
 import semohan.semohan.global.exception.ErrorCode;
@@ -31,7 +31,7 @@ public class RestaurantService {
     private final MenuRepository menuRepository;
     private final MemberRepository memberRepository;
 
-    public List<RestaurnatDto> searchRestaurants(String type, String keyword) {
+    public List<RestaurantDto> searchRestaurants(String type, String keyword) {
         List<Restaurant> restaurantList;
 
         switch (type) {
@@ -53,7 +53,7 @@ public class RestaurantService {
         }
 
         return restaurantList.stream()
-                .map(restaurant -> RestaurnatDto.toDto(restaurant))
+                .map(restaurant -> RestaurantDto.toDto(restaurant))
                 .collect(Collectors.toList());
     }
 
@@ -65,12 +65,12 @@ public class RestaurantService {
         Member member = memberRepository.findMemberById(memberId).orElseThrow(() -> new CustomException(ErrorCode.INVALID_MEMBER));
 
         // pin 식당
-        RestaurnatDto pinDto = RestaurnatDto.toDto(member.getPin());
+        RestaurantDto pinDto = RestaurantDto.toDto(member.getPin());
 
         // scrap 식당
-        List<RestaurnatDto> scrapDtoList = member.getScrap()
+        List<RestaurantDto> scrapDtoList = member.getScrap()
                 .stream()
-                .map(restaurant -> RestaurnatDto.toDto(restaurant))
+                .map(restaurant -> RestaurantDto.toDto(restaurant))
                 .collect(Collectors.toList());
 
         // PinnedScrappedDto 리턴

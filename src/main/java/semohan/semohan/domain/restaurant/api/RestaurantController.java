@@ -9,7 +9,7 @@ import semohan.semohan.domain.restaurant.application.RestaurantService;
 import semohan.semohan.domain.restaurant.dto.PinnedScrappedRequestDto;
 import semohan.semohan.domain.restaurant.dto.PinnedScrappedResponseDto;
 import semohan.semohan.domain.restaurant.dto.RestaurantDetailDto;
-import semohan.semohan.domain.restaurant.dto.RestaurnatDto;
+import semohan.semohan.domain.restaurant.dto.RestaurantDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,14 +23,14 @@ public class RestaurantController {
 
     // 근처에 있는 식당
     @GetMapping("/nearby")
-    public ResponseEntity<List<RestaurnatDto>> getRestaurantsByLocationInfo(@CookieValue(value = "region", defaultValue = "성북구") String region) {
+    public ResponseEntity<List<RestaurantDto>> getRestaurantsByLocationInfo(@CookieValue(value = "region", defaultValue = "성북구") String region) {
         log.info("Region from cookie: " + region);
         return ResponseEntity.ok(restaurantService.searchRestaurants("location", region));
     }
 
     // 식당 검색
     @GetMapping("/search")
-    public ResponseEntity<List<RestaurnatDto>> searchRestaurants(
+    public ResponseEntity<List<RestaurantDto>> searchRestaurants(
             @RequestParam(value = "menu", required = false) String menu,
             @RequestParam(value = "location", required = false) String location,
             @RequestParam(value = "name", required = false) String name

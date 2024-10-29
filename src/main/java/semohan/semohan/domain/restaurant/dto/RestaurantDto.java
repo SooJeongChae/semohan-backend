@@ -7,14 +7,14 @@ import semohan.semohan.domain.restaurant.domain.Restaurant;
 
 @Data
 @AllArgsConstructor
-public class RestaurnatDto {
+public class RestaurantDto {
     private long id;
 
     private String name;
 
     private String s3Url;
 
-    public static RestaurnatDto toDto(Restaurant entity) {
-        return new RestaurnatDto(entity.getId(), entity.getName(), entity.getImage().getS3Url());
+    public static RestaurantDto toDto(Restaurant entity) {
+        return new RestaurantDto(entity.getId(), entity.getName(), entity.getImage().getS3Url());
     }
 }

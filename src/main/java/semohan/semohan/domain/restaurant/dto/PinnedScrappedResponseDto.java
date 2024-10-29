@@ -6,11 +6,11 @@ import java.util.List;
 
 @Data
 public class PinnedScrappedResponseDto {
-    private RestaurnatDto pinnedRestaurnat;
-    private List<RestaurnatDto> scrappedRestaurnats;
+    private RestaurantDto pinnedRestaurant;
+    private List<RestaurantDto> scrappedRestaurants;
 
-    public PinnedScrappedResponseDto(RestaurnatDto pinnedRestaurnat, List<RestaurnatDto> scrappedRestaurnats) {
-        this.pinnedRestaurnat = pinnedRestaurnat;
-        this.scrappedRestaurnats = scrappedRestaurnats;
+    public PinnedScrappedResponseDto(RestaurantDto pinnedRestaurant, List<RestaurantDto> scrappedRestaurants) {
+        this.pinnedRestaurant = pinnedRestaurant;
+        this.scrappedRestaurants = scrappedRestaurants;
     }
 }
